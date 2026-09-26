@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Aditya Avisetti</title>
 <meta name="description" content="Aditya Avisetti — Software Developer building interactive brain atlas platforms at IIT Madras.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Aditya Avisetti — Software Developer">
+<meta property="og:description" content="I build web tools that let scientists explore the human brain: public atlas platforms, real-time collaboration and AI assistants at IIT Madras.">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#F6F5F9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111016" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235B3E9E'/%3E%3Ctext x='16' y='23' font-family='Segoe UI,system-ui,sans-serif' font-size='20' font-weight='700' fill='%23fff' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -43,22 +51,52 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
 
 /* nav */
-.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px}
-.brand{font-family:var(--display);font-weight:700;font-size:18px;text-decoration:none;letter-spacing:-.01em}
-.brand span{color:var(--accent)}
-.nav ul{display:flex;gap:24px;list-style:none;margin:0;padding:0;font-size:15px}
-.nav ul a{text-decoration:none;color:var(--muted)}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--surface) 88%,transparent);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line);transition:box-shadow .2s}
+.nav.scrolled{box-shadow:0 8px 24px -18px color-mix(in srgb,var(--ink) 45%,transparent)}
+.nav .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;height:64px}
+/* brand */
+.brand{display:inline-flex;align-items:center;gap:11px;text-decoration:none;justify-self:start;min-width:0}
+.brand-text{display:flex;flex-direction:column;line-height:1.15;min-width:0}
+.brand-text b{font:700 15.5px var(--display);letter-spacing:-.01em;white-space:nowrap}
+.brand-text small{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--faint);white-space:nowrap;margin-top:2px}
+/* links */
+.nav ul{display:flex;gap:4px;list-style:none;margin:0;padding:0;font-size:14.5px;align-self:stretch}
+.nav ul a{position:relative;display:flex;align-items:center;height:100%;padding:0 14px;text-decoration:none;color:var(--muted);font-weight:500;transition:color .15s}
 .nav ul a:hover{color:var(--ink)}
-.nav-right{display:flex;align-items:center;gap:10px}
-.theme{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);display:grid;place-items:center;cursor:pointer;padding:0;transition:border-color .15s}
+.nav ul a[aria-current="true"]{color:var(--ink)}
+.nav ul a::after{content:"";position:absolute;left:14px;right:14px;bottom:-1px;height:2px;border-radius:2px 2px 0 0;background:var(--accent);transform:scaleX(0);transition:transform .2s}
+.nav ul a[aria-current="true"]::after{transform:scaleX(1)}
+.nav .only-mobile{display:none}
+/* actions */
+.nav-right{grid-column:3;justify-self:end;display:flex;align-items:center;gap:8px}
+.nav-link{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:14px;font-weight:600;color:var(--ink);text-decoration:none;transition:border-color .15s}
+.nav-link:hover{border-color:var(--accent)}
+.nav-link svg{width:15px;height:15px}
+.theme{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);display:grid;place-items:center;cursor:pointer;padding:0;transition:border-color .15s}
 .theme:hover{border-color:var(--accent)}
-.theme svg{width:18px;height:18px}
+.theme svg{width:17px;height:17px}
 .theme .sun{display:none}
 :root[data-theme="dark"] .theme .sun{display:block}
 :root[data-theme="dark"] .theme .moon{display:none}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .theme .sun{display:block}:root:not([data-theme="light"]) .theme .moon{display:none}}
-@media (max-width:720px){.nav ul{display:none}}
+.btn.nav-cta{height:36px;padding:0 16px;font-size:14px;gap:6px}
+.btn.nav-cta svg{width:14px;height:14px;transition:transform .15s}
+.btn.nav-cta:hover svg{transform:translateX(2px)}
+.menu{display:none;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);place-items:center;cursor:pointer;padding:0}
+.menu svg{width:18px;height:18px}
+@media (max-width:1000px){.nav-link{display:none}.brand-text small{display:none}}
+@media (max-width:720px){
+  .menu{display:grid}
+  .nav ul{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:2px;padding:10px calc(clamp(16px,4vw,40px) - 14px) 16px;background:var(--bg);border:0;border-bottom:1px solid var(--line);border-radius:0}
+  .nav.open ul{display:flex}
+  .nav ul{align-self:auto;background:var(--surface)}
+  .nav ul a{height:auto;padding:11px 14px;font-size:16px;border-radius:10px}
+  .nav ul a[aria-current="true"]{background:var(--accent-soft);color:var(--accent)}
+  .nav ul a::after{display:none}
+  .nav .only-mobile{display:list-item}
+}
+@media (max-width:420px){.btn.nav-cta{display:none}.brand-text b{font-size:15px}}
+section[id]{scroll-margin-top:80px}
 
 /* buttons */
 .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;font-family:var(--body);transition:border-color .15s,transform .15s}
@@ -67,14 +105,14 @@ h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
 .btn svg{width:16px;height:16px}
 
 /* hero */
-.hero{padding-block:clamp(48px,8vw,96px) clamp(40px,6vw,72px)}
+.hero{padding-block:clamp(24px,3vw,36px) clamp(40px,6vw,72px)}
 .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,5vw,64px);align-items:center}
 @media (max-width:880px){.hero-grid{grid-template-columns:1fr}}
 .status{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12.5px;color:var(--muted);padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
 .status i{width:8px;height:8px;border-radius:50%;background:#2E9E6B;box-shadow:0 0 0 3px color-mix(in srgb,#2E9E6B 25%,transparent)}
-.hero h1{font-size:clamp(44px,7.4vw,84px);font-weight:800;letter-spacing:-.035em;margin-top:22px}
+.hero h1{font-size:clamp(40px,6.2vw,72px);font-weight:700;letter-spacing:-.015em;line-height:1.08;margin-top:22px;color:color-mix(in srgb,var(--ink) 88%,var(--bg))}
 .hero h1 em{font-style:normal;color:var(--accent)}
-.fullname{font-family:var(--mono);font-size:13px;color:var(--faint);margin-top:14px;letter-spacing:.02em}
+.fullname{font-family:var(--mono);font-size:13.5px;font-weight:500;color:var(--muted);margin-top:16px;letter-spacing:.06em}
 .lede{font-size:clamp(18px,2vw,21px);color:var(--muted);max-width:34em;margin:22px 0 0}
 .lede strong{color:var(--ink);font-weight:600}
 .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
@@ -85,7 +123,9 @@ h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
 .planes{display:flex;gap:4px}
 .planes button{font:inherit;color:var(--muted);background:none;border:1px solid transparent;border-radius:6px;padding:3px 8px;cursor:pointer}
 .planes button[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent);border-color:color-mix(in srgb,var(--accent) 30%,transparent)}
-.viewer canvas{display:block;width:100%;aspect-ratio:1/0.82;cursor:crosshair;background:var(--tissue)}
+.viewer{margin:0}
+.viewer canvas{display:block;width:100%;aspect-ratio:560/460;cursor:crosshair;background:var(--tissue);touch-action:pan-y}
+.viewer canvas:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
 .viewer-foot{display:flex;justify-content:space-between;gap:12px;padding:9px 14px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11.5px;color:var(--faint);font-variant-numeric:tabular-nums}
 .viewer-foot b{color:var(--ink);font-weight:500}
 
@@ -99,8 +139,11 @@ h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
 
 /* sections */
 section.block{padding-block:clamp(56px,8vw,96px)}
-.head{display:grid;grid-template-columns:220px 1fr;gap:24px;margin-bottom:40px;align-items:baseline}
-.head h2{font-size:clamp(30px,4vw,44px);font-weight:700;letter-spacing:-.025em}
+section.block.flush{padding-top:0}
+.head{display:grid;grid-template-columns:220px 1fr;gap:24px;margin-bottom:40px;align-items:center}
+.head h2{font-size:clamp(30px,4vw,44px);font-weight:700;letter-spacing:-.015em}
+.head .label{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;letter-spacing:.1em;color:var(--accent)}
+.head .label::before{content:"";flex:none;width:20px;height:2px;border-radius:2px;background:currentColor}
 .head p{grid-column:2;color:var(--muted);margin:10px 0 0;max-width:40em}
 @media (max-width:720px){.head{grid-template-columns:1fr;gap:8px}.head p{grid-column:1}}
 
@@ -111,7 +154,7 @@ section.block{padding-block:clamp(56px,8vw,96px)}
 .card:hover{border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
 .card .top{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .pill{font-family:var(--mono);font-size:11.5px;padding:4px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
-.card h3{font-size:30px;font-weight:800;letter-spacing:-.025em}
+.card h3{font-size:30px;font-weight:700;letter-spacing:-.01em}
 .card .sub{color:var(--muted);font-size:15px;margin-top:-6px}
 .card ul{margin:0;padding-left:18px;color:var(--muted);display:grid;gap:6px;font-size:15.5px}
 .card ul li::marker{color:var(--accent)}
@@ -158,12 +201,15 @@ section.block{padding-block:clamp(56px,8vw,96px)}
 
 /* side project + edu */
 .duo{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card h3.sm{font-size:24px}
+.card .sub.flat{margin:0}
 @media (max-width:820px){.duo{grid-template-columns:1fr}}
 
 /* contact */
 .contact{background:var(--ink);color:var(--bg);border-radius:22px;padding:clamp(28px,5vw,56px);display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:end}
 @media (max-width:820px){.contact{grid-template-columns:1fr}}
-.contact h2{font-size:clamp(34px,5vw,56px);font-weight:800;letter-spacing:-.03em}
+.contact h2{font-size:clamp(34px,5vw,56px);font-weight:700;letter-spacing:-.015em;margin-top:10px}
+.contact .label{color:inherit;opacity:.6}
 .contact p{color:color-mix(in srgb,var(--bg) 70%,var(--ink));margin:14px 0 0;max-width:30em}
 .clist{display:grid;gap:10px}
 .crow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border:1px solid color-mix(in srgb,var(--bg) 20%,var(--ink));border-radius:12px;min-width:0}
@@ -171,8 +217,17 @@ section.block{padding-block:clamp(56px,8vw,96px)}
 .crow .v{font-weight:500;overflow-wrap:anywhere;user-select:all}
 .crow a.v{user-select:auto;text-decoration:none}
 .crow a.v:hover{text-decoration:underline}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .copy{flex:none;font:500 12px var(--mono);background:none;color:var(--bg);border:1px solid color-mix(in srgb,var(--bg) 30%,var(--ink));border-radius:8px;padding:6px 10px;cursor:pointer}
 .copy:hover{border-color:var(--bg)}
+.crow.mail{position:relative}
+.crow.mail .v{cursor:pointer}
+.mail-menu{position:absolute;left:12px;top:calc(100% + 6px);z-index:5;min-width:220px;padding:6px;border-radius:12px;background:var(--surface);color:var(--ink);border:1px solid var(--line);box-shadow:0 16px 40px -12px rgba(0,0,0,.35)}
+.mail-menu[hidden]{display:none}
+.mail-menu p{margin:4px 10px 6px;font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+.mail-menu a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 10px;border-radius:8px;font-size:14.5px;font-weight:500;color:var(--ink);text-decoration:none}
+.mail-menu a:hover,.mail-menu a:focus-visible{background:var(--accent-soft);color:var(--accent);outline:none}
+.mail-menu a span{color:var(--faint);font-size:13px}
 footer{padding-block:32px 48px;color:var(--faint);font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 
 .reveal{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
@@ -185,20 +240,27 @@ footer{padding-block:32px 48px;color:var(--faint);font-size:14px;display:flex;ju
 
 <nav class="nav" aria-label="Primary">
   <div class="wrap">
-    <a class="brand" href="#top">Aditya<span>.</span></a>
-    <ul>
+    <a class="brand" href="#top" aria-label="Aditya Avisetti, back to top"><span class="brand-text"><b>Aditya Avisetti</b><small>Software Developer</small></span></a>
+    <ul id="nav-links">
       <li><a href="#work">Work</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#recognition">Recognition</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li class="only-mobile"><a href="#contact">Contact</a></li>
+      <li class="only-mobile"><a href="resumes/Aditya_Resume.pdf" download>Download resume</a></li>
     </ul>
     <div class="nav-right">
-      <button class="theme" type="button" id="theme-toggle" aria-label="Switch between light and dark theme">
+      <a class="nav-link" href="resumes/Aditya_Resume.pdf" download>Resume
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10"/></svg></a>
+      <button class="theme" type="button" id="theme-toggle" aria-label="Dark theme" aria-pressed="false">
         <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
         <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.2M12 19.8V22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2 12h2.2M19.8 12H22M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/></svg>
       </button>
-      <a class="btn primary" href="#contact" style="padding:8px 16px;font-size:14px">Get in touch</a>
+      <a class="btn primary nav-cta" href="#contact">Get in touch
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      <button class="menu" type="button" id="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
     </div>
   </div>
 </nav>
@@ -206,19 +268,23 @@ footer{padding-block:32px 48px;color:var(--faint);font-size:14px;display:flex;ju
 <header class="hero" id="top">
   <div class="wrap hero-grid">
     <div>
-      <div class="status reveal"><i></i> Software Developer · IIT Madras · Chennai</div>
+      <div class="status reveal"><i></i> Available for opportunities · Software Developer · IIT Madras</div>
       <h1 class="reveal d2">I build web tools that let scientists <em>explore the human brain.</em></h1>
-      <p class="fullname reveal d3">SATYA TEJA ADITYA BHARGAV AVISETTI</p>
+      <p class="fullname reveal d3">SATYA TEJA ADITYA BHARG AVISETTI</p>
       <p class="lede reveal d3">Software developer with <strong>2+ years</strong> building complete web applications at the <strong>Sudha Gopalakrishnan Brain Centre, IIT Madras</strong>, from Angular and TypeScript interfaces to Node.js services, Redis-backed real-time sync and LLM integrations. I build high-resolution imaging viewers, multi-user collaboration systems and AI assistants for neuroscience research.</p>
       <div class="cta reveal d4">
         <a class="btn primary" href="#work">See my work
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
         <a class="btn" href="https://linkedin.com/in/aditya-avisetti-073b13204/" target="_blank" rel="noopener">LinkedIn
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h7v7M13 3 4 12"/></svg></a>
+        <!-- <a class="btn" href="https://github.com/ADITYAAVISETTI" target="_blank" rel="noopener">GitHub
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h7v7M13 3 4 12"/></svg></a> -->
+        <a class="btn" href="resumes/Aditya_Resume.pdf" download>Download Resume
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 2v9M4 7l4 4 4-4M3 14h10"/></svg></a>
       </div>
     </div>
 
-    <figure class="viewer reveal d3" style="margin:0" aria-label="Interactive illustration of a brain section viewer">
+    <figure class="viewer reveal d3" aria-labelledby="viewer-cap">
       <div class="viewer-bar">
         <span>atlas-viewer · section 0412</span>
         <div class="planes" role="group" aria-label="Plane">
@@ -227,11 +293,12 @@ footer{padding-block:32px 48px;color:var(--faint);font-size:14px;display:flex;ju
           <button type="button" id="p-sag" aria-pressed="false" data-plane="2">SAG</button>
         </div>
       </div>
-      <canvas id="slide" width="560" height="460"></canvas>
+      <canvas id="slide" width="560" height="460" tabindex="0" role="img" aria-label="Illustrated coronal brain section with labelled regions. Use the arrow keys to move the crosshair." aria-describedby="region"></canvas>
       <div class="viewer-foot">
         <span>x <b id="cx">—</b> µm · y <b id="cy">—</b> µm</span>
-        <span id="region">Hover the section</span>
+        <span id="region" aria-live="polite">Hover or tap the section</span>
       </div>
+      <figcaption id="viewer-cap" class="sr-only">Interactive illustration of a brain atlas viewer. Switch between axial, coronal and sagittal planes, then hover, tap or use the arrow keys to identify regions.</figcaption>
     </figure>
   </div>
 </header>
@@ -266,10 +333,11 @@ footer{padding-block:32px 48px;color:var(--faint);font-size:14px;display:flex;ju
           <li>Tools for anatomical annotations, neurochemical maps and synchronised multimodal views.</li>
           <li>Launched at the III BRICS Neuroscience Symposium 2026. Acknowledged in the scientific publication.</li>
         </ul>
-        <div class="tags"><span class="tag">Angular</span><span class="tag">TypeScript</span><span class="tag">OpenLayers</span><span class="tag">MRI · BFI · IHC</span></div>
+        <div class="tags"><span class="tag">OpenLayers</span><span class="tag">MRI · BFI · IHC</span></div>
         <div class="links">
           <a href="https://anchor.humanbrain.in/" target="_blank" rel="noopener">Visit anchor.humanbrain.in ↗</a>
           <a href="https://doi.org/10.64898/2026.06.03.727794" target="_blank" rel="noopener">Publication ↗</a>
+          <a href="https://www.linkedin.com/feed/update/urn:li:activity:7470077985786884096/" target="_blank" rel="noopener">Launch photos ↗</a>
         </div>
       </article>
       <article class="card">
@@ -290,7 +358,7 @@ footer{padding-block:32px 48px;color:var(--faint);font-size:14px;display:flex;ju
   </div>
 </section>
 
-<section class="block" id="experience" style="padding-top:0">
+<section class="block flush" id="experience">
   <div class="wrap">
     <div class="head">
       <span class="label">Experience</span>
@@ -332,19 +400,19 @@ footer{padding-block:32px 48px;color:var(--faint);font-size:14px;display:flex;ju
   </div>
 </section>
 
-<section class="block" id="skills" style="padding-top:0">
+<section class="block flush" id="skills">
   <div class="wrap">
     <div class="head">
       <span class="label">Skills</span>
       <h2>Toolkit</h2>
     </div>
     <div class="skills">
-      <div class="skill"><h3>Languages</h3><div class="tags"><span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">Java</span></div></div>
+      <div class="skill"><h3>Languages</h3><div class="tags"><span class="tag">TypeScript</span><span class="tag">JavaScript</span><!-- <span class="tag">Python</span> --><span class="tag">Java</span></div></div>
       <div class="skill"><h3>Web applications</h3><div class="tags"><span class="tag">Angular</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Nebular UI</span></div></div>
-      <div class="skill"><h3>Server &amp; APIs</h3><div class="tags"><span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">REST APIs</span><span class="tag">WebSockets</span></div></div>
+      <div class="skill"><h3>Server &amp; APIs</h3><div class="tags"><span class="tag">Node.js</span><span class="tag">Express.js</span><!-- <span class="tag">Django</span> --><span class="tag">REST APIs</span><span class="tag">WebSockets</span></div></div>
       <div class="skill"><h3>Databases</h3><div class="tags"><span class="tag">MySQL</span><span class="tag">Redis</span><span class="tag">MongoDB</span></div></div>
       <div class="skill"><h3>Visualisation &amp; tools</h3><div class="tags"><span class="tag">OpenLayers</span><span class="tag">WebGL</span><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Postman</span></div></div>
-      <div class="skill"><h3>AI</h3><div class="tags"><span class="tag">Claude</span><span class="tag">ChatGPT</span><span class="tag">Gemini</span><span class="tag">Qwen</span></div></div>
+      <div class="skill"><h3>AI</h3><div class="tags"><span class="tag">Claude</span><span class="tag">ChatGPT</span><span class="tag">Gemini</span></div></div>
     </div>
     <div class="ai">
       <div><h4>Generative AI in the product</h4><p>I integrate LLM APIs into production apps, including an agentic assistant that drives a scientific viewer and conversational data queries on live dashboards.</p></div>
@@ -353,7 +421,7 @@ footer{padding-block:32px 48px;color:var(--faint);font-size:14px;display:flex;ju
   </div>
 </section>
 
-<section class="block" id="recognition" style="padding-top:0">
+<section class="block flush" id="recognition">
   <div class="wrap">
     <div class="head">
       <span class="label">Recognition</span>
@@ -363,7 +431,7 @@ footer{padding-block:32px 48px;color:var(--faint);font-size:14px;display:flex;ju
       <div class="rec">
         <span class="label">Launch · 2026</span>
         <div><h3>ANCHOR launched at the III BRICS Neuroscience Symposium</h3>
-        <p>I contributed to the development of ANCHOR, which was officially launched at the symposium hosted by IIT Madras.</p></div>
+        <p>I contributed to the development of ANCHOR, which was officially launched at the symposium hosted by the Sudha Gopalakrishnan Brain Centre, IIT Madras. <a href="https://www.linkedin.com/feed/update/urn:li:activity:7470077985786884096/" target="_blank" rel="noopener">See the launch post and photos ↗</a></p></div>
       </div>
       <div class="rec">
         <span class="label">Poster · 2026</span>
@@ -379,11 +447,12 @@ footer{padding-block:32px 48px;color:var(--faint);font-size:14px;display:flex;ju
   </div>
 </section>
 
-<section class="block" style="padding-top:0">
+<section class="block flush" id="more" aria-labelledby="more-h">
+  <h2 id="more-h" class="sr-only">Side project and education</h2>
   <div class="wrap duo">
     <article class="card">
       <span class="label">Project</span>
-      <h3 style="font-size:24px">Hotel Reservation Management System</h3>
+      <h3 class="sm">Hotel Reservation Management System</h3>
       <ul>
         <li>Guests search, view and book rooms by location, room type and amenities.</li>
         <li>An admin dashboard lets staff manage room listings, locations and amenities.</li>
@@ -392,24 +461,34 @@ footer{padding-block:32px 48px;color:var(--faint);font-size:14px;display:flex;ju
     </article>
     <article class="card">
       <span class="label">Education · 2019 — 2023</span>
-      <h3 style="font-size:24px">B.Tech, Electronics &amp; Communication Engineering</h3>
-      <p class="sub" style="margin:0">V.R. Siddhartha Engineering College, Vijayawada</p>
+      <h3 class="sm">B.Tech, Electronics &amp; Communication Engineering</h3>
+      <p class="sub flat">V.R. Siddhartha Engineering College, Vijayawada</p>
     </article>
   </div>
 </section>
 
-<section class="block" id="contact" style="padding-top:0">
+<section class="block flush" id="contact">
   <div class="wrap">
     <div class="contact">
       <div>
-        <span class="label" style="color:inherit;opacity:.6">Contact</span>
-        <h2 style="margin-top:10px">Let's build something together.</h2>
+        <span class="label">Contact</span>
+        <h2>Let's build something together.</h2>
         <p>I'm open to software engineering roles, especially products that combine data-heavy interfaces with real-time systems, APIs and AI.</p>
       </div>
       <div class="clist">
-        <div class="crow"><div><div class="k">Email</div><div class="v" id="email">adityaavisetti1729@gmail.com</div></div><button class="copy" type="button" data-copy="email">Copy</button></div>
-        <div class="crow"><div><div class="k">Phone</div><div class="v" id="phone">+91 96979 78222</div></div><button class="copy" type="button" data-copy="phone">Copy</button></div>
+        <!-- email and phone are assembled by the script so scrapers can't read them from the HTML -->
+        <div class="crow mail"><div><div class="k">Email</div><a class="v" id="email" data-u="9271ittesivaaytida" data-d="moc.liamg" aria-haspopup="true" aria-expanded="false" aria-controls="mail-menu">adityaavisetti1729 [at] gmail [dot] com</a></div><button class="copy" type="button" data-copy="email">Copy</button>
+          <div class="mail-menu" id="mail-menu" hidden>
+            <p>Write with</p>
+            <a id="m-gmail" target="_blank" rel="noopener">Gmail <span>↗</span></a>
+            <a id="m-outlook" target="_blank" rel="noopener">Outlook <span>↗</span></a>
+            <a id="m-yahoo" target="_blank" rel="noopener">Yahoo Mail <span>↗</span></a>
+            <a id="m-default">Default mail app <span>✉</span></a>
+          </div>
+        </div>
+        <div class="crow"><div><div class="k">Phone</div><a class="v" id="phone" data-n="22287 97969 19+">Enable JavaScript to show</a></div><button class="copy" type="button" data-copy="phone">Copy</button></div>
         <div class="crow"><div><div class="k">LinkedIn</div><a class="v" href="https://linkedin.com/in/aditya-avisetti-073b13204/" target="_blank" rel="noopener">aditya-avisetti ↗</a></div></div>
+        <div class="crow"><div><div class="k">GitHub</div><a class="v" href="https://github.com/ADITYAAVISETTI" target="_blank" rel="noopener">ADITYAAVISETTI ↗</a></div></div>
       </div>
     </div>
   </div>
@@ -417,19 +496,63 @@ footer{padding-block:32px 48px;color:var(--faint);font-size:14px;display:flex;ju
 </main>
 
 <div class="wrap">
-  <footer><span>© 2026 Aditya Avisetti</span><span>Chennai, India</span></footer>
+  <footer><span>© <span id="year">2026</span> Aditya Avisetti</span><span>Chennai, India</span></footer>
 </div>
 
 <script>
 (function(){
-  // theme toggle
-  var root=document.documentElement;
-  try{var saved=localStorage.getItem('theme');if(saved==='light'||saved==='dark')root.setAttribute('data-theme',saved)}catch(e){}
-  function isDark(){var t=root.getAttribute('data-theme');return t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches}
-  document.getElementById('theme-toggle').addEventListener('click',function(){
+  // theme toggle (saved theme is applied by the inline script in <head>)
+  var root=document.documentElement, themeBtn=document.getElementById('theme-toggle');
+  var darkMQ=matchMedia('(prefers-color-scheme: dark)');
+  function isDark(){var t=root.getAttribute('data-theme');return t?t==='dark':darkMQ.matches}
+  function syncThemeBtn(){themeBtn.setAttribute('aria-pressed',isDark())}
+  syncThemeBtn();
+  themeBtn.addEventListener('click',function(){
     var next=isDark()?'light':'dark';root.setAttribute('data-theme',next);
     try{localStorage.setItem('theme',next)}catch(e){}
+    syncThemeBtn();
   });
+
+  // nav: border after scrolling, highlight the section in view
+  function onScroll(){nav.classList.toggle('scrolled',scrollY>8)}
+  addEventListener('scroll',onScroll,{passive:true});
+  var navLinks=[].slice.call(document.querySelectorAll('#nav-links a'));
+  var spy=new IntersectionObserver(function(entries){entries.forEach(function(en){
+    if(!en.isIntersecting)return;
+    navLinks.forEach(function(a){a.getAttribute('href')==='#'+en.target.id?a.setAttribute('aria-current','true'):a.removeAttribute('aria-current')});
+  })},{rootMargin:'-45% 0px -50% 0px'});
+  navLinks.forEach(function(a){var t=document.querySelector(a.getAttribute('href'));if(t)spy.observe(t)});
+  spy.observe(document.getElementById('top')); // clears the highlight back at the hero
+
+  // mobile menu
+  var nav=document.querySelector('.nav'), menuBtn=document.getElementById('menu-toggle');
+  onScroll();
+  function setMenu(open){nav.classList.toggle('open',open);menuBtn.setAttribute('aria-expanded',open)}
+  menuBtn.addEventListener('click',function(){setMenu(!nav.classList.contains('open'))});
+  document.querySelectorAll('#nav-links a').forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('open')){setMenu(false);menuBtn.focus()}});
+  document.addEventListener('click',function(e){if(!nav.contains(e.target))setMenu(false)});
+
+  // contact details
+  var rev=function(s){return s.split('').reverse().join('')};
+  var em=document.getElementById('email'), ph=document.getElementById('phone');
+  var addr=rev(em.dataset.u)+'@'+rev(em.dataset.d), tel=rev(ph.dataset.n);
+  em.textContent=addr;em.href='mailto:'+addr;
+  ph.textContent=tel;ph.href='tel:'+tel.replace(/\s/g,'');
+
+  // clicking the email offers web mail too, since mailto: does nothing without a default mail app
+  var mailMenu=document.getElementById('mail-menu'), to=encodeURIComponent(addr);
+  document.getElementById('m-gmail').href='https://mail.google.com/mail/?view=cm&fs=1&to='+to;
+  document.getElementById('m-outlook').href='https://outlook.live.com/mail/0/deeplink/compose?to='+to;
+  document.getElementById('m-yahoo').href='https://compose.mail.yahoo.com/?to='+to;
+  document.getElementById('m-default').href='mailto:'+addr;
+  function setMail(open){mailMenu.hidden=!open;em.setAttribute('aria-expanded',open);if(open)mailMenu.querySelector('a').focus()}
+  em.addEventListener('click',function(e){e.preventDefault();setMail(mailMenu.hidden)});
+  mailMenu.addEventListener('click',function(e){if(e.target.closest('a'))setMail(false)});
+  document.addEventListener('click',function(e){if(!mailMenu.hidden&&!mailMenu.contains(e.target)&&e.target!==em)setMail(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!mailMenu.hidden){setMail(false);em.focus()}});
+
+  document.getElementById('year').textContent=new Date().getFullYear();
 
   // copy buttons
   document.querySelectorAll('.copy').forEach(function(b){
@@ -446,7 +569,9 @@ footer{padding-block:32px 48px;color:var(--faint);font-size:14px;display:flex;ju
   var W=560,H=460,plane=1,mouse=null;
   var dpr=Math.min(window.devicePixelRatio||1,2);
   cv.width=W*dpr;cv.height=H*dpr;ctx.scale(dpr,dpr);
-  function css(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()}
+  // theme colours are read once per theme change, not on every frame
+  var C={};
+  function readColors(){var s=getComputedStyle(root);['--stain','--tissue','--tissue-2','--ink','--accent','--line'].forEach(function(n){C[n]=s.getPropertyValue(n).trim()})}
   function rng(seed){return function(){seed=(seed*16807)%2147483647;return (seed-1)/2147483646}}
 
   // region outlines per plane: [name, cx, cy, rx, ry, wobble seed]
@@ -477,10 +602,11 @@ footer{padding-block:32px 48px;color:var(--faint);font-size:14px;display:flex;ju
     return cache[pi]={outer:outer,regs:regs,cells:cells,folds:folds};
   }
   function draw(){
-    var S=build(plane),stain=css('--stain'),tissue=css('--tissue-2'),ink=css('--ink'),bg=css('--tissue'),acc=css('--accent');
+    raf=0;
+    var S=build(plane),stain=C['--stain'],tissue=C['--tissue-2'],ink=C['--ink'],bg=C['--tissue'],acc=C['--accent'];
     ctx.clearRect(0,0,W,H);ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
     // grid
-    ctx.strokeStyle=css('--line');ctx.lineWidth=1;
+    ctx.strokeStyle=C['--line'];ctx.lineWidth=1;
     for(var g=40;g<W;g+=40){ctx.beginPath();ctx.moveTo(g+.5,0);ctx.lineTo(g+.5,H);ctx.stroke()}
     for(g=40;g<H;g+=40){ctx.beginPath();ctx.moveTo(0,g+.5);ctx.lineTo(W,g+.5);ctx.stroke()}
     path(S.outer);ctx.fillStyle=tissue;ctx.fill();
@@ -506,19 +632,37 @@ footer{padding-block:32px 48px;color:var(--faint);font-size:14px;display:flex;ju
       ctx.beginPath();ctx.moveTo(mouse[0]+.5,0);ctx.lineTo(mouse[0]+.5,H);ctx.moveTo(0,mouse[1]+.5);ctx.lineTo(W,mouse[1]+.5);ctx.stroke();
       ctx.globalAlpha=1;ctx.beginPath();ctx.arc(mouse[0],mouse[1],9,0,7);ctx.stroke();
     }
-    document.getElementById('region').textContent=hover?hover:(mouse?'Outside labelled regions':'Hover the section');
+    var label=hover?hover:(mouse?'Outside labelled regions':'Hover or tap the section');
+    if(regionEl.textContent!==label)regionEl.textContent=label; // avoid re-announcing to screen readers
+  }
+  var raf=0, regionEl=document.getElementById('region'), cxEl=document.getElementById('cx'), cyEl=document.getElementById('cy');
+  function schedule(){if(!raf)raf=requestAnimationFrame(draw)}
+  function setMouse(m){
+    mouse=m?[Math.max(0,Math.min(W,m[0])),Math.max(0,Math.min(H,m[1]))]:null;
+    cxEl.textContent=mouse?Math.round(mouse[0]*62.5).toLocaleString():'—';
+    cyEl.textContent=mouse?Math.round(mouse[1]*62.5).toLocaleString():'—';
+    schedule();
   }
   function pos(e){var b=cv.getBoundingClientRect();return [(e.clientX-b.left)/b.width*W,(e.clientY-b.top)/b.height*H]}
-  cv.addEventListener('pointermove',function(e){mouse=pos(e);
-    document.getElementById('cx').textContent=Math.round(mouse[0]*62.5).toLocaleString();
-    document.getElementById('cy').textContent=Math.round(mouse[1]*62.5).toLocaleString();draw()});
-  cv.addEventListener('pointerleave',function(){mouse=null;document.getElementById('cx').textContent='—';document.getElementById('cy').textContent='—';draw()});
+  cv.addEventListener('pointerdown',function(e){setMouse(pos(e))});
+  cv.addEventListener('pointermove',function(e){setMouse(pos(e))});
+  // on touch, keep the crosshair after the finger lifts so the region stays readable
+  cv.addEventListener('pointerleave',function(e){if(e.pointerType==='mouse')setMouse(null)});
+  cv.addEventListener('keydown',function(e){
+    var step=e.shiftKey?40:10, m=mouse||[W/2,H/2], d={ArrowLeft:[-step,0],ArrowRight:[step,0],ArrowUp:[0,-step],ArrowDown:[0,step]}[e.key];
+    if(d){e.preventDefault();setMouse(mouse?[m[0]+d[0],m[1]+d[1]]:m)}
+    else if(e.key==='Escape')setMouse(null);
+  });
+  cv.addEventListener('blur',function(){setMouse(null)});
   document.querySelectorAll('.planes button').forEach(function(b){b.addEventListener('click',function(){
-    plane=+b.dataset.plane;document.querySelectorAll('.planes button').forEach(function(o){o.setAttribute('aria-pressed',o===b)});draw()})});
-  draw();
-  if(document.fonts)document.fonts.ready.then(draw);
-  matchMedia('(prefers-color-scheme: dark)').addEventListener('change',draw);
-  new MutationObserver(draw).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+    plane=+b.dataset.plane;document.querySelectorAll('.planes button').forEach(function(o){o.setAttribute('aria-pressed',o===b)});
+    cv.setAttribute('aria-label','Illustrated '+planes[plane].name.toLowerCase()+' brain section with labelled regions. Use the arrow keys to move the crosshair.');
+    schedule()})});
+  function retheme(){readColors();syncThemeBtn();schedule()}
+  readColors();draw();
+  if(document.fonts)document.fonts.ready.then(schedule);
+  darkMQ.addEventListener('change',retheme);
+  new MutationObserver(retheme).observe(root,{attributes:true,attributeFilter:['data-theme']});
 })();
 </script>
 </body>
