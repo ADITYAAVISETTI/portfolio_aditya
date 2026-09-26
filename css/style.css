@@ -156,6 +156,7 @@ section[id] {
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
+  white-space: nowrap;
   transition: border-color 0.15s, transform 0.15s;
 }
 
@@ -435,7 +436,7 @@ section[id] {
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 480px) {
   .nav-cta {
     display: none;
   }
