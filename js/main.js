@@ -121,11 +121,16 @@ function initNavbar() {
 // can't pick them out of the HTML. We flip them back here.
 const reverse = text => text.split('').reverse().join('');
 
+function getMyEmail() {
+  const emailLink = document.getElementById('email');
+  return reverse(emailLink.dataset.user) + '@' + reverse(emailLink.dataset.domain);
+}
+
 function initContactDetails() {
   const emailLink = document.getElementById('email');
   const phoneLink = document.getElementById('phone');
 
-  const email = reverse(emailLink.dataset.user) + '@' + reverse(emailLink.dataset.domain);
+  const email = getMyEmail();
   const phone = reverse(phoneLink.dataset.number);
 
   emailLink.textContent = email;
@@ -201,8 +206,9 @@ function initCopyButtons() {
 }
 
 function flashLabel(button, label) {
-  button.textContent = label;
-  setTimeout(() => (button.textContent = 'Copy'), 1600);
+  const text = button.querySelector('.copy-label');
+  text.textContent = label;
+  setTimeout(() => (text.textContent = 'Copy'), 1600);
 }
 
 
